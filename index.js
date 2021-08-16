@@ -4,7 +4,6 @@ const   express           = require('express'),
         postRoutes      =   require('./routes/posts'),
         swaggerUi       =   require('swagger-ui-express'),
         swaggerJsDoc    =   require('swagger-jsdoc');
-
 app.use(express.json());
 const swaggerOption = {
     swaggerDefinition: (swaggerJsDoc.Options = {

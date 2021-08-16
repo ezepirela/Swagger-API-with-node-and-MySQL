@@ -1,4 +1,4 @@
-const db    =   require('../config/db.config');
+const db    =   require('../db.config');
 exports.addPost = (data, callback) =>{
     db.query(`INSERT INTO posts (description, imagePath, dateTimeCreated, addedByUserId) VALUES (?, ?, ?, ?)`,
     [data.description, data.imagePath, new Date(), data.addedByUserId],
