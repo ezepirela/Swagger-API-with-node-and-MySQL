@@ -119,4 +119,82 @@ Router.get('/comments', controllers.getAllComments);
  *          '400':
  *              description: Bad request
  */
+Router.put('/like-post', controllers.likePost);
+/**
+ * @swagger
+ * /posts/like-post:
+ *   put:
+ *      description: Used to like post
+ *      tags:
+ *          - posts
+ *      parameters:
+ *          - in: body
+ *            name: Post
+ *            description: Post data
+ *            schema:
+ *              type: object
+ *              required:
+ *                 - postId
+ *              properties:
+ *                  postId:
+ *                      type: integer
+ *                      example: 1
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
+ Router.put('/dislike-post', controllers.dislikePost);
+ /**
+ * @swagger
+ * /posts/dislike-post:
+ *   put:
+ *      description: Used to dilike post
+ *      tags:
+ *          - posts
+ *      parameters:
+ *          - in: body
+ *            name: Post
+ *            description: Post data
+ *            schema:
+ *              type: object
+ *              required:
+ *                 - postId
+ *              properties:
+ *                  postId:
+ *                      type: integer
+ *                      example: 1
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
+Router.delete('/', controllers.deletePost);
+/**
+ * @swagger
+ * /posts/:
+ *   delete:
+ *      description: Used to delete post
+ *      tags:
+ *          - posts
+ *      parameters:
+ *          - in: query
+ *            name: postId
+ *            type: integer
+ *            description: Post id
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
 module.exports = Router;

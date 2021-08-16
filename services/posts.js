@@ -43,3 +43,42 @@ exports.getAllComments = (data, callback) => {
         return callback(null, results);
     })
 }
+exports.likePost = (data, callback) => {
+    db.query(`UPDATE posts SET likeCount = likeCount + 1 WHERE id = ?`, 
+    [data.postId],
+    (error, results, fields) => {
+        if(error){
+            console.log(error);
+            return callback(error);
+        }else if(results.affectedRows === 1) {
+            return callback(null, 'Like succesfulluy');
+        }
+        return callback(new Error('Invalid Post'));
+    });
+};
+exports.dislikePost = (data, callback) => {
+    db.query(`UPDATE posts SET dislikeCount = dislikeCount + 1 WHERE id = ?`,
+    [data.postId],
+    (error, results, fields) => {
+        if(error){
+            console.log(error);
+            return callback(error);
+        }else if(results.affectedRows === 1) {
+            return callback(null, 'dislike succesfulluy');
+        }
+        return callback(new Error('Invalid Post'));
+    });
+};
+exports.deletePost = (data, callback) => {
+        db.query(`DELETE FROM posts WHERE id = ?`,
+        [data.postId],
+        (error, results, fields) => {
+            if(error){
+                console.log(error);
+                return callback(error);
+            }else if(results.affectedRows === 1) {
+                return callback(null, 'Post deleted succesfulluy');
+            }
+            return callback(new Error('Invalid Post'));
+        });
+}
