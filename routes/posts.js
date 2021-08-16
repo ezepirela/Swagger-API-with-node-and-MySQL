@@ -43,4 +43,80 @@ Router.post('/', controllers.addPost);
  *          '400':
  *              description: Bad request
  */
+Router.get('/', controllers.getAllPost)
+/**
+ * @swagger
+ * /posts/:
+ *   get:
+ *      description: Used to get all posts
+ *      tags:
+ *          - posts
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
+Router.post('/comments', controllers.addPostComment);
+/**
+ * @swagger
+ * /posts/comments:
+ *   post:
+ *      description: Used to add post comment
+ *      tags:
+ *          - posts
+ *      parameters:
+ *          - in: body
+ *            name: Comment
+ *            description: Post Comment
+ *            schema:
+ *              type: object
+ *              required:
+ *                 - postId
+ *                 - comment
+ *                 - addedByUserId
+ *              properties:
+ *                  postId:
+ *                      type: integer
+ *                      example: 1
+ *                  comment:
+ *                      type: string
+ *                      minLength: 1
+ *                      maxLength: 1000
+ *                      example: This is sample comment
+ *                  addedByUserId:
+ *                      type: integer
+ *                      example: 1
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
+Router.get('/comments', controllers.getAllComments);
+/**
+ * @swagger
+ * /posts/comments:
+ *   get:
+ *      description: Used to get all comment of given post id
+ *      tags:
+ *          - posts
+ *      parameters:
+ *          - in: query
+ *            name: postId
+ *            type: integer
+ *            description: Post id
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
 module.exports = Router;
